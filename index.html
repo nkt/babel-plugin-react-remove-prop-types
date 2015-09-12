@@ -1,75 +1,93 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>Babel-plugin-react by nkt</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/nkt/babel-plugin-react">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/nkt/babel-plugin-react/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/nkt/babel-plugin-react/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+    <section class="page-header">
+      <h1 class="project-name">Babel-plugin-react</h1>
+      <h2 class="project-tagline">React specific transformers for babel</h2>
+      <a href="https://github.com/nkt/babel-plugin-react-remove-prop-types" class="btn">View on GitHub</a>
+      <a href="https://github.com/nkt/babel-plugin-react-remove-prop-types/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/nkt/babel-plugin-react-remove-prop-types/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <div class="wrapper">
+    <section class="main-content">
+      <h1>
+<a id="babel-plugin-for-removing-react-proptypes" class="anchor" href="#babel-plugin-for-removing-react-proptypes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Babel Plugin for removing React propTypes</h1>
 
-      <section>
-        <div id="title">
-          <h1>Babel-plugin-react</h1>
-          <p>React specific transformers for babel</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/nkt">nkt</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+<p><a href="https://circleci.com/gh/nkt/babel-plugin-react-remove-prop-types"><img src="https://circleci.com/gh/nkt/babel-plugin-react-remove-prop-types.svg?style=svg" alt="Circle CI"></a>
+<a href="https://www.npmjs.com/package/babel-plugin-react-remove-prop-types"><img src="https://img.shields.io/npm/dm/babel-plugin-react-remove-prop-types.svg" alt="Downloads"></a></p>
 
-        <h1>
-<a id="babel-react-plugin" class="anchor" href="#babel-react-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Babel React Plugin</h1>
+<p>Removes React propTypes</p>
 
 <h2>
-<a id="transformers" class="anchor" href="#transformers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transformers</h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
 
-<h3>
-<a id="removing-proptypes" class="anchor" href="#removing-proptypes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Removing <code>propTypes</code>
-</h3>
+<p><strong>In</strong></p>
 
-<p>Name: <code>minification.removeReactPropTypes</code></p>
-
-<p>Before:</p>
-
-<div class="highlight highlight-js"><pre><span class="pl-k">const</span> <span class="pl-c1">Foo</span> <span class="pl-k">=</span> React.createClass({
+<div class="highlight highlight-javascript"><pre><span class="pl-k">const</span> <span class="pl-c1">Foo</span> <span class="pl-k">=</span> React.createClass({
   propTypes<span class="pl-k">:</span> {
     foo<span class="pl-k">:</span> React.PropTypes.string
   }
 });</pre></div>
 
-<p>After:</p>
+<p><strong>Out</strong></p>
 
-<div class="highlight highlight-js"><pre><span class="pl-k">const</span> <span class="pl-c1">Foo</span> <span class="pl-k">=</span> React.createClass({});</pre></div>
+<div class="highlight highlight-javascript"><pre><span class="pl-k">const</span> <span class="pl-c1">Foo</span> <span class="pl-k">=</span> React.createClass({});</pre></div>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<div class="highlight highlight-sh"><pre>$ npm install --save-dev babel-plugin-react-remove-prop-types</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="via-babelrc-recommended" class="anchor" href="#via-babelrc-recommended" aria-hidden="true"><span class="octicon octicon-link"></span></a>Via <code>.babelrc</code> (Recommended)</h3>
+
+<p><strong>.babelrc</strong></p>
+
+<div class="highlight highlight-json"><pre>{
+  <span class="pl-s"><span class="pl-pds">"</span>env<span class="pl-pds">"</span></span>: {
+    <span class="pl-s"><span class="pl-pds">"</span>production<span class="pl-pds">"</span></span>: {
+      <span class="pl-s"><span class="pl-pds">"</span>plugins<span class="pl-pds">"</span></span>: [<span class="pl-s"><span class="pl-pds">"</span>react-remove-prop-types<span class="pl-pds">"</span></span>]
+    }
+  }
+}</pre></div>
+
+<h3>
+<a id="via-cli" class="anchor" href="#via-cli" aria-hidden="true"><span class="octicon octicon-link"></span></a>Via CLI</h3>
+
+<div class="highlight highlight-sh"><pre>$ babel --plugins react-remove-prop-types script.js</pre></div>
+
+<h3>
+<a id="via-node-api" class="anchor" href="#via-node-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>Via Node API</h3>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">"</span>babel-core<span class="pl-pds">"</span></span>).transform(<span class="pl-s"><span class="pl-pds">"</span>code<span class="pl-pds">"</span></span>, {
+  plugins<span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">"</span>react-remove-prop-types<span class="pl-pds">"</span></span>]
+});</pre></div>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
-<p>MIT</p>
-      </section>
+<p><a href="LICENSE"><img src="https://img.shields.io/npm/l/babel-plugin-react.svg" alt="MIT license"></a></p>
 
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/nkt/babel-plugin-react-remove-prop-types">Babel-plugin-react</a> is maintained by <a href="https://github.com/nkt">nkt</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
