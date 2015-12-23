@@ -1,8 +1,8 @@
-const path = require('path');
-const fs = require('fs');
-const assert = require('assert');
-const babel = require('babel-core');
-const reactPlugin = require('../src/index');
+import path from 'path';
+import {readFileSync, readdirSync} from 'fs';
+import assert from 'assert';
+import {transformFileSync} from 'babel-core';
+import reactPlugin from '../src/index';
 
 function trim(str) {
   return str.replace(/^\s+|\s+$/, '');
@@ -10,17 +10,18 @@ function trim(str) {
 
 describe('remove react propTypes', () => {
   const fixturesDir = path.join(__dirname, 'fixtures');
-  fs.readdirSync(fixturesDir).map((caseName) => {
+  readdirSync(fixturesDir).map((caseName) => {
     it(`should ${caseName.split('-').join(' ')}`, () => {
       const fixtureDir = path.join(fixturesDir, caseName);
-      const actual = babel.transformFileSync(path.join(fixtureDir, 'actual.js'), {
-        stage: 0,
-        blacklist: ['es6.classes'],
+      const actualPath = path.join(fixtureDir, 'actual.js');
+      const expectedPath = path.join(fixtureDir, 'expected.js');
+
+      const actual = transformFileSync(actualPath, {
         plugins: [
           reactPlugin
         ]
       }).code;
-      const expected = fs.readFileSync(path.join(fixtureDir, 'expected.js')).toString();
+      const expected = readFileSync(expectedPath).toString();
 
       assert.equal(trim(actual), trim(expected));
     });
