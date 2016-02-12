@@ -1,18 +1,9 @@
 {
   "name": "babel-plugin-react-remove-prop-types",
   "version": "1.0.2",
-  "description": "Removes React propTypes",
   "main": "lib/index.js",
-  "scripts": {
-    "test": "istanbul test _mocha",
-    "prebuild": "rm -rf lib/",
-    "build": "babel -d lib/ src/",
-    "prepublish": "npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nkt/babel-plugin-react-remove-prop-types.git"
-  },
+  "license": "MIT",
+  "description": "Removes React propTypes",
   "keywords": [
     "babel",
     "babel-plugin",
@@ -21,7 +12,18 @@
     "propTypes"
   ],
   "author": "Nikita Gusakov",
-  "license": "MIT",
+  "contributors": [{
+    "name": "Olivier Tassinari",
+    "url": "https://github.com/oliviertassinari"
+  }, {
+    "name": "Samuel Reed",
+    "email": "sam@bitmex.com",
+    "url": "https://github.com/STRML"
+  }],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nkt/babel-plugin-react-remove-prop-types.git"
+  },
   "bugs": {
     "url": "https://github.com/nkt/babel-plugin-react-remove-prop-types/issues"
   },
@@ -34,5 +36,11 @@
     "babel-preset-es2015": "^6.5.0",
     "istanbul": "^0.4.2",
     "mocha": "^2.2.5"
+  },
+  "scripts": {
+    "test": "istanbul test _mocha",
+    "prebuild": "rm -rf lib/",
+    "build": "babel -d lib/ src/",
+    "prepublish": "npm run build"
   }
 }
