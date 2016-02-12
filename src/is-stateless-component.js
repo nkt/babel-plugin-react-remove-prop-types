@@ -18,7 +18,7 @@ function isReturningJSXElement(rootPath) {
           break;
         case 'CallExpression':
           const node = argument.get('callee').node;
-          console.log(node);
+
           if (node.object.name === 'React' && node.property.name === 'createElement') {
             visited = true;
           }
