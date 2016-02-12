@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-react-remove-prop-types",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "main": "lib/index.js",
   "license": "MIT",
   "description": "Removes React propTypes",
@@ -12,14 +12,17 @@
     "propTypes"
   ],
   "author": "Nikita Gusakov",
-  "contributors": [{
-    "name": "Olivier Tassinari",
-    "url": "https://github.com/oliviertassinari"
-  }, {
-    "name": "Samuel Reed",
-    "email": "sam@bitmex.com",
-    "url": "https://github.com/STRML"
-  }],
+  "contributors": [
+    {
+      "name": "Olivier Tassinari",
+      "url": "https://github.com/oliviertassinari"
+    },
+    {
+      "name": "Samuel Reed",
+      "email": "sam@bitmex.com",
+      "url": "https://github.com/STRML"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/nkt/babel-plugin-react-remove-prop-types.git"
