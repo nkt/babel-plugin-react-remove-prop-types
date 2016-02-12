@@ -21,6 +21,7 @@ describe('Babel plugin React remove PropTypes', () => {
         babelrc: false,
         plugins: [
           require('babel-plugin-transform-class-properties'),
+          require('babel-plugin-syntax-jsx'),
           plugin
         ]
       }).code;

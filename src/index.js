@@ -1,3 +1,5 @@
+import isStatelessComponent from './is-stateless-component';
+
 export default function() {
   function isReactComponent(superClass) {
     return superClass.matchesPattern('React.Component') || superClass.matchesPattern('Component');
@@ -45,12 +47,16 @@ export default function() {
 
         const className = left.object.name;
         const binding = scope.getBinding(className);
-        if (!binding || !binding.path.isClassDeclaration()) {
+        if (!binding) {
           return;
         }
 
-        const superClass = binding.path.get('superClass');
-        if (isReactComponent(superClass)) {
+        if (binding.path.isClassDeclaration()) {
+          const superClass = binding.path.get('superClass');
+          if (isReactComponent(superClass)) {
+            path.remove();
+          }
+        } else if (isStatelessComponent(binding.path)) {
           path.remove();
         }
       }
