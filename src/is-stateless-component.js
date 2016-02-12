@@ -17,7 +17,12 @@ function isReturningJSXElement(rootPath) {
           visited = true;
           break;
         case 'CallExpression':
-          const name = argument.get('callee.node.name');
+          const node = argument.get('callee').node;
+
+          if (node.object.name === 'React' && node.property.name === 'createElement') {
+            visited = true;
+          }
+          const name = argument.get('callee').node.name;
           const binding = path.scope.getBinding(name);
           if (binding && isReturningJSXElement(binding.path)) {
             visited = true;

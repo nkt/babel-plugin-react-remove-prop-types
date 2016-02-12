@@ -57,3 +57,7 @@ function Foo8() {
   };
   return obj.deep.member();
 }
+
+const Foo9 = () => {
+  return React.createElement("div", null);
+};
