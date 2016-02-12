@@ -1,12 +1,17 @@
-export default function ({ Plugin, types: t }) {
-  const visitor = {
-    Property: {
-      exit(node) {
+export default function() {
+  function isReactComponent(superClass) {
+    return superClass.matchesPattern('React.Component') || superClass.matchesPattern('Component');
+  }
+
+  return {
+    visitor: {
+      ObjectProperty(path) {
+        const {node} = path;
         if (node.computed || node.key.name !== 'propTypes') {
           return;
         }
 
-        const parent = this.findParent((parent) => {
+        const parent = path.findParent((parent) => {
           if (parent.type !== 'CallExpression') {
             return false;
           }
@@ -15,42 +20,40 @@ export default function ({ Plugin, types: t }) {
         });
 
         if (parent) {
-          this.dangerouslyRemove();
+          path.remove();
         }
-      }
-    },
-    ClassProperty(node, parent, scope) {
-      if (node.key.name === 'propTypes') {
+      },
+      ClassProperty(path) {
+        const {node, scope} = path
+        if (node.key.name !== 'propTypes') {
+          return;
+        }
+
         const className = scope.block.id.name;
-        const binding = this.scope.getBinding(className);
+        const binding = scope.getBinding(className);
         const superClass = binding.path.get('superClass');
-        if (superClass.matchesPattern('React.Component') || superClass.matchesPattern('Component')) {
-          this.dangerouslyRemove();
+        if (isReactComponent(superClass)) {
+          path.remove();
         }
-      }
-    },
-    AssignmentExpression(node) {
-      if (node.left.computed || !node.left.property || node.left.property.name !== 'propTypes') {
-        return;
-      }
+      },
+      AssignmentExpression(path) {
+        const {node, scope} = path;
+        const {left} = node;
+        if (left.computed || !left.property || left.property.name !== 'propTypes') {
+          return;
+        }
 
-      const className = node.left.object.name;
-      const binding = this.scope.getBinding(className);
-      if (!binding || !binding.path.isClassDeclaration()) {
-        return;
-      }
+        const className = left.object.name;
+        const binding = scope.getBinding(className);
+        if (!binding || !binding.path.isClassDeclaration()) {
+          return;
+        }
 
-      const superClass = binding.path.get('superClass');
-      if (superClass.matchesPattern('React.Component') || superClass.matchesPattern('Component')) {
-        this.dangerouslyRemove();
+        const superClass = binding.path.get('superClass');
+        if (isReactComponent(superClass)) {
+          path.remove();
+        }
       }
     }
   };
-
-  return new Plugin('react-remove-prop-types', {
-    visitor,
-    metadata: {
-      group: 'builtin-pre'
-    }
-  });
-};
+}
