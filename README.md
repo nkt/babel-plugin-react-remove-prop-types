@@ -4,6 +4,8 @@
 
 Removes `propTypes` from your React components.
 
+**This plugin deprecated. Use [babel-plugin-transform-react-remove-prop-types](https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types)**
+
 ## Example
 
 **In**

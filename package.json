@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-react-remove-prop-types",
   "version": "2.0.2",
-  "main": "lib/index.js",
+  "main": "index.js",
   "license": "MIT",
   "description": "Removes React propTypes",
   "keywords": [
